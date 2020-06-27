@@ -28,7 +28,12 @@ class FileStorage:
     def reload(self):
         """deserializes the JSON file to __objects"""
         from ..base_model import BaseModel
-        """future site of other classes"""
+        from ..user import User
+        from ..state import State
+        from ..city import City
+        from ..amenity import Amenity
+        from ..place import Place
+        from ..review import Review
 
         if exists(self.__file_path):
             with open(self.__file_path) as jsonfile:
@@ -36,3 +41,15 @@ class FileStorage:
             for keys in decereal.keys():
                 if decereal[keys]['__class__'] == "BaseModel":
                     self.__objects[keys] = BaseModel(**decereal[keys])
+                elif decereal[keys]['__class__'] == "User":
+                    self.__objects[keys] = User(**decereal[keys])
+                elif decereal[keys]['__class__'] == "State":
+                    self.__objects[keys] = State(**decereal[keys])
+                elif decereal[keys]['__class__'] == "City":
+                    self.__objects[keys] = City(**decereal[keys])
+                elif decereal[keys]['__class__'] == "Amenity":
+                    self.__objects[keys] = Amenity(**decereal[keys])
+                elif decereal[keys]['__class__'] == "Place":
+                    self.__objects[keys] = Place(**decereal[keys])
+                elif decereal[keys]['__class__'] == "Review":
+                    self.__objects[keys] = Review(**decereal[keys])
