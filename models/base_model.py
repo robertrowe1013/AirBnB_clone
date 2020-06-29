@@ -33,7 +33,6 @@ class BaseModel():
         storage.save()
         self.updated_at = datetime.now()
 
-
     def to_dict(self):
         """creates a dictionary of BaseModel"""
         self.dictionary = dict(self.__dict__)

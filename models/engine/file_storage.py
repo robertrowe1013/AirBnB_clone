@@ -3,6 +3,7 @@
 import json
 from os.path import exists
 
+
 class FileStorage:
     """Class for FileStorage"""
 
