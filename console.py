@@ -16,6 +16,7 @@ class HBNBCommand(cmd.Cmd):
     """CLI"""
     prompt = '(hbnb)'
     class_name = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']
+
     def do_quit(self, line):
         """quits"""
         raise SystemExit
@@ -55,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
             if show_key in all_obj:
                 print(all_obj[show_key])
             else:
-                print("** no instance found **")
+                print("** no  instance found **")
         elif args[0]:
             print("** class doesn't exist **")
         else:
@@ -93,7 +94,11 @@ class HBNBCommand(cmd.Cmd):
         elif line:
             print("** class doesn't exist **")
         else:
-            print("Print all objects")
+            all_obj = storage.all()
+            all_int = []
+            for keys in all_obj.keys():
+                all_int.append(str(all_obj[keys]))
+            print(all_int)
 
     def do_update(self, line):
         """add or update attribute"""
@@ -122,7 +127,8 @@ class HBNBCommand(cmd.Cmd):
                 except IndexError:
                     print("** value missing **")
                     return
-                print("Update not yet implemented")
+                setattr(all_obj[update_key], args[2], args[3])
+                storage.save()
             else:
                 print("** no instance found **")
         else:
