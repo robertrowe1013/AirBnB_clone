@@ -29,10 +29,20 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, line):
         """make a new instance"""
         if line in self.class_name:
-            class_dict = {'BaseModel':BaseModel(), 'User':User(), 'State':State(),
-                          'City':City(), 'Amenity':Amenity(), 'Place':Place(), 
-                          'Review':Review()}
-            new_obj = class_dict[line]
+            if line == "baseModel":
+                new_obj = BaseModel()
+            if line == "User":
+                new_obj = User()
+            if line == "State":
+                new_obj = State()
+            if line == "City":
+                new_obj = City()
+            if line == "Amenity":
+                new_obj = Amenity()
+            if line == "Place":
+                new_obj = Place()
+            if line == "Review":
+                new_obj = Review()
             new_obj.save()
             print(new_obj.id)
         elif line:
