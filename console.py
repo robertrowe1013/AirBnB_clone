@@ -31,9 +31,11 @@ class HBNBCommand(cmd.Cmd):
             class_dict = {'BaseModel':BaseModel(), 'User':User(), 'State':State(),
                           'City':City(), 'Amenity':Amenity(), 'Place':Place(), 
                           'Review':Review()}
-            new_obj = class_dict[line]
-            new_obj.save()
-            print(new_obj.id)
+            for key in class_dict.keys():
+                if key == line:
+                    new_obj = class_dict[key]
+                    new_obj.save()
+                    print(new_obj.id)
         elif line:
             print("** class doesn't exist **")
         else:
@@ -83,8 +85,11 @@ class HBNBCommand(cmd.Cmd):
         """print all instances or all class instances"""
         if line in self.class_name:
             all_obj = storage.all()
-            for key, value in all_obj:
-                print(value)
+            all_int = []
+            for keys in all_obj.keys():
+                if line == all_obj[keys].__class__.__name__:
+                    all_int.append(str(all_obj[keys]))
+            print(all_int)
         elif line:
             print("** class doesn't exist **")
         else:
