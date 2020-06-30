@@ -141,10 +141,13 @@ class HBNBCommand(cmd.Cmd):
                 except IndexError:
                     print("** value missing **")
                     return
-                if args[2] == 'my_number':
+                if args[2] == 'my_number' or args[2] == 'number_rooms' or args[2] == 'number_bathrooms'\
+                               or args[2] == 'max_guest' or args[2] == 'price_by_night':
                     setattr(all_obj[update_key], args[2], int(args[3]))
+                elif args[2] == 'latitude' or args[2] == 'longitude':
+                    setattr(all_obj[update_key], args[2], float(args[3]))
                 else:
-                    setattr(all_obj[update_key], args[2], args[3])
+                    setattr(all_obj[update_key], args[2], str(args[3]))
                 timestamp = datetime.now()
                 setattr(all_obj[update_key], 'updated_at', timestamp)
                 storage.save()
