@@ -18,6 +18,10 @@ class HBNBCommand(cmd.Cmd):
     class_name = ['BaseModel', 'User', 'State',
                   'City', 'Amenity', 'Place', 'Review']
 
+    def emptyline(self):
+        """do not execute last command with empty line"""
+        pass
+
     def do_quit(self, line):
         """quits"""
         raise SystemExit
