@@ -141,7 +141,10 @@ class HBNBCommand(cmd.Cmd):
                 except IndexError:
                     print("** value missing **")
                     return
-                setattr(all_obj[update_key], args[2], args[3])
+                if args[2] == 'my_number':
+                    setattr(all_obj[update_key], args[2], int(args[3]))
+                else:
+                    setattr(all_obj[update_key], args[2], args[3])
                 timestamp = datetime.now()
                 setattr(all_obj[update_key], 'updated_at', timestamp)
                 storage.save()
