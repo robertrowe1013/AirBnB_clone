@@ -2,6 +2,7 @@
 """command line interpreter"""
 import cmd
 import shlex
+from datetime import datetime
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -141,6 +142,8 @@ class HBNBCommand(cmd.Cmd):
                     print("** value missing **")
                     return
                 setattr(all_obj[update_key], args[2], args[3])
+                timestamp = datetime.now()
+                setattr(all_obj[update_key], 'updated_at', timestamp)
                 storage.save()
             else:
                 print("** no instance found **")
