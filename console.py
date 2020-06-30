@@ -15,7 +15,8 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """CLI"""
     prompt = '(hbnb)'
-    class_name = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']
+    class_name = ['BaseModel', 'User', 'State',
+                  'City', 'Amenity', 'Place', 'Review']
 
     def do_quit(self, line):
         """quits"""
@@ -29,19 +30,19 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, line):
         """make a new instance"""
         if line in self.class_name:
-            if line == "baseModel":
+            if line == "BaseModel":
                 new_obj = BaseModel()
-            if line == "User":
+            elif line == "User":
                 new_obj = User()
-            if line == "State":
+            elif line == "State":
                 new_obj = State()
-            if line == "City":
+            elif line == "City":
                 new_obj = City()
-            if line == "Amenity":
+            elif line == "Amenity":
                 new_obj = Amenity()
-            if line == "Place":
+            elif line == "Place":
                 new_obj = Place()
-            if line == "Review":
+            elif line == "Review":
                 new_obj = Review()
             new_obj.save()
             print(new_obj.id)
