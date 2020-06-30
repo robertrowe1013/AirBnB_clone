@@ -30,23 +30,25 @@ class TestBaseModel(unittest.TestCase):
         self.assertGreater(bm1.updated_at, snapshot)
         
         bm1.save()
-        self.assertIsInstance(bm1.updated, datetime)
-        self.assertGreater(bm1.updated, snapshot)
-        self.assertGreater(bm1.updated, snapshot2)
+        self.assertIsInstance(bm1.updated_at, datetime)
+        self.assertGreater(bm1.updated_at, snapshot)
+        self.assertGreater(bm1.updated_at, snapshot2)
+        del bm1
         
     def test_init_dict(self):
         """test dict basemodel init"""
-        test_dict = {'updated_at': datetime.datetime(1963, 11, 22, 12, 30, 00, 716921).isoformat('T'), 'id': 'z3854b62-93fa-fbbe-27de-630706f8313c', 'created_at': datetime.datetime(1963, 11, 22, 12, 30, 00, 716921).isoformat('T')}
+        test_dict = {'updated_at': datetime(1963, 11, 22, 12, 30, 00, 716921).isoformat('T')
+                     , 'id': 'z3854b62-93fa-fbbe-27de-630706f8313c', 'created_at': datetime(1963, 11, 22, 12, 30, 00, 716921).isoformat('T')}
         bm2 = BaseModel(**test_dict)
 
         self.assertIsInstance(bm2.id, str)
         self.assertTrue(len(bm2.id) > 0)
-        self.assertTrue(bm2 == test_dict['id'])
+        self.assertTrue(bm2.id == test_dict['id'])
         
         self.assertIsInstance(bm2.created_at, datetime)
         self.assertTrue(bm2.created_at.isoformat('T') == test_dict['created_at'])
-        self.assertIsInstance(bm2.updated, datetime)
+        self.assertIsInstance(bm2.updated_at, datetime)
         self.assertTrue(bm2.updated_at.isoformat('T') == test_dict['updated_at'])
         bm2.save()
-        self.assertGreater(bm2.updated, bm2.created_at)
-
+        self.assertGreater(bm2.updated_at, bm2.created_at)
+        del bm2
