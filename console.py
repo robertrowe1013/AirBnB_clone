@@ -2,6 +2,7 @@
 """command line interpreter"""
 import cmd
 import shlex
+from datetime import datetime
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -15,7 +16,12 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """CLI"""
     prompt = '(hbnb)'
-    class_name = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']
+    class_name = ['BaseModel', 'User', 'State',
+                  'City', 'Amenity', 'Place', 'Review']
+
+    def emptyline(self):
+        """do not execute last command with empty line"""
+        pass
 
     def do_quit(self, line):
         """quits"""
@@ -29,14 +35,22 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, line):
         """make a new instance"""
         if line in self.class_name:
-            class_dict = {'BaseModel':BaseModel(), 'User':User(), 'State':State(),
-                          'City':City(), 'Amenity':Amenity(), 'Place':Place(), 
-                          'Review':Review()}
-            for key in class_dict.keys():
-                if key == line:
-                    new_obj = class_dict[key]
-                    new_obj.save()
-                    print(new_obj.id)
+            if line == "BaseModel":
+                new_obj = BaseModel()
+            elif line == "User":
+                new_obj = User()
+            elif line == "State":
+                new_obj = State()
+            elif line == "City":
+                new_obj = City()
+            elif line == "Amenity":
+                new_obj = Amenity()
+            elif line == "Place":
+                new_obj = Place()
+            elif line == "Review":
+                new_obj = Review()
+            new_obj.save()
+            print(new_obj.id)
         elif line:
             print("** class doesn't exist **")
         else:
@@ -128,6 +142,8 @@ class HBNBCommand(cmd.Cmd):
                     print("** value missing **")
                     return
                 setattr(all_obj[update_key], args[2], args[3])
+                timestamp = datetime.now()
+                setattr(all_obj[update_key], 'updated_at', timestamp)
                 storage.save()
             else:
                 print("** no instance found **")
