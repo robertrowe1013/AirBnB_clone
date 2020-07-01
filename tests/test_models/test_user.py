@@ -11,7 +11,7 @@ from models.user import User
 class TestUser(unittest.TestCase):
     """test BaseModel"""
 
-    def test_ayinit(self):
+    def test_ainit(self):
         """test blank basemodel init"""
         snapshot = datetime.now()
         um1 = User()
@@ -52,3 +52,17 @@ class TestUser(unittest.TestCase):
         um2.save()
         self.assertGreater(um2.updated_at, um2.created_at)
         del um2
+
+    def test_attribute(self):
+        """asdad"""
+        um3 = User()
+
+        self.assertTrue(hasattr(um3, "email"))
+        self.assertTrue(hasattr(um3, "password"))
+        self.assertTrue(hasattr(um3, "first_name"))
+        self.assertTrue(hasattr(um3, "last_name"))
+
+        self.assertIsInstance(um3.email, str)
+        self.assertIsInstance(um3.password, str)
+        self.assertIsInstance(um3.first_name, str)
+        self.assertIsInstance(um3.last_name, str)

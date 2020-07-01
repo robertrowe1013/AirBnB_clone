@@ -52,3 +52,10 @@ class TestState(unittest.TestCase):
         sm2.save()
         self.assertGreater(sm2.updated_at, sm2.created_at)
         del sm2
+
+    def test_attribute(self):
+        """asdad"""
+        sm3 = State()
+
+        self.assertTrue(hasattr(sm3, "name"))
+        self.assertIsInstance(sm3.name, str)

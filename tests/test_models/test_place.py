@@ -52,3 +52,32 @@ class TestPlace(unittest.TestCase):
         pm2.save()
         self.assertGreater(pm2.updated_at, pm2.created_at)
         del pm2
+
+    def test_attribute(self):
+        """asdad"""
+        pm3 = Place()
+
+        self.assertTrue(hasattr(pm3, "city_id"))
+        self.assertTrue(hasattr(pm3, "user_id"))
+        self.assertTrue(hasattr(pm3, "name"))
+        self.assertTrue(hasattr(pm3, "description"))
+        self.assertTrue(hasattr(pm3, "number_rooms"))
+        self.assertTrue(hasattr(pm3, "number_bathrooms"))
+        self.assertTrue(hasattr(pm3, "max_guest"))
+        self.assertTrue(hasattr(pm3, "price_by_night"))
+        self.assertTrue(hasattr(pm3, "latitude"))
+        self.assertTrue(hasattr(pm3, "longitude"))
+        self.assertTrue(hasattr(pm3, "amenity_ids"))
+
+        self.assertIsInstance(pm3.city_id, str)
+        self.assertIsInstance(pm3.user_id, str)
+        self.assertIsInstance(pm3.name, str)
+        self.assertIsInstance(pm3.description, str)
+        self.assertIsInstance(pm3.number_rooms, int)
+        self.assertIsInstance(pm3.number_bathrooms, int)
+        self.assertIsInstance(pm3.max_guest, int)
+        self.assertIsInstance(pm3.price_by_night, int)
+        self.assertIsInstance(pm3.latitude, float)
+        self.assertIsInstance(pm3.longitude, float)
+        self.assertIsInstance(pm3.amenity_ids, list)
+
