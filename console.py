@@ -109,11 +109,11 @@ class HBNBCommand(cmd.Cmd):
         elif line:
             print("** class doesn't exist **")
         else:
-            all_obj = storage.all()
-            all_int = []
+            print(storage.all())
+            """all_int = []
             for keys in all_obj.keys():
                 all_int.append(str(all_obj[keys]))
-            print(all_int)
+            print(all_int)"""
 
     def do_update(self, line):
         """add or update attribute"""
@@ -142,8 +142,9 @@ class HBNBCommand(cmd.Cmd):
                 except IndexError:
                     print("** value missing **")
                     return
-                if args[2] == 'my_number' or args[2] == 'number_rooms' or args[2] == 'number_bathrooms'\
-                               or args[2] == 'max_guest' or args[2] == 'price_by_night':
+                if (args[2] == 'my_number' or args[2] == 'number_rooms' or
+                        args[2] == 'number_bathrooms' or args[2] ==
+                        'max_guest' or args[2] == 'price_by_night'):
                     setattr(all_obj[update_key], args[2], int(args[3]))
                 elif args[2] == 'latitude' or args[2] == 'longitude':
                     setattr(all_obj[update_key], args[2], float(args[3]))
