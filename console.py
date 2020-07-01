@@ -109,11 +109,11 @@ class HBNBCommand(cmd.Cmd):
         elif line:
             print("** class doesn't exist **")
         else:
-            print(storage.all())
-            """all_int = []
+            all_obj = storage.all()
+            all_int = []
             for keys in all_obj.keys():
                 all_int.append(str(all_obj[keys]))
-            print(all_int)"""
+            print(all_int)
 
     def do_update(self, line):
         """add or update attribute"""
@@ -150,8 +150,7 @@ class HBNBCommand(cmd.Cmd):
                     setattr(all_obj[update_key], args[2], float(args[3]))
                 else:
                     setattr(all_obj[update_key], args[2], str(args[3]))
-                timestamp = datetime.now()
-                setattr(all_obj[update_key], 'updated_at', timestamp)
+                setattr(all_obj[update_key], 'updated_at', datetime.now())
                 storage.save()
             else:
                 print("** no instance found **")
