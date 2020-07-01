@@ -52,3 +52,10 @@ class TestAmenity(unittest.TestCase):
         am2.save()
         self.assertGreater(am2.updated_at, am2.created_at)
         del am2
+
+    def test_attribute(self):
+        """asdad"""
+        am3 = Amenity()
+
+        self.assertTrue(hasattr(am3, "name"))
+        self.assertIsInstance(am3.name, str)

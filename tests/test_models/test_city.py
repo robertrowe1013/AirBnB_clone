@@ -52,3 +52,13 @@ class TestCity(unittest.TestCase):
         cm2.save()
         self.assertGreater(cm2.updated_at, cm2.created_at)
         del cm2
+
+    def test_attribute(self):
+        """asdad"""
+        cm3 = City()
+
+        self.assertTrue(hasattr(cm3, "state_id"))
+        self.assertTrue(hasattr(cm3, "name"))
+
+        self.assertIsInstance(cm3.state_id, str)
+        self.assertIsInstance(cm3.name, str)

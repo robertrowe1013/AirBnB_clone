@@ -52,3 +52,15 @@ class TestReview(unittest.TestCase):
         rm2.save()
         self.assertGreater(rm2.updated_at, rm2.created_at)
         del rm2
+
+    def test_attribute(self):
+        """asdad"""
+        rm3 = Review()
+
+        self.assertTrue(hasattr(rm3, "place_id"))
+        self.assertTrue(hasattr(rm3, "user_id"))
+        self.assertTrue(hasattr(rm3, "text"))
+
+        self.assertIsInstance(rm3.place_id, str)
+        self.assertIsInstance(rm3.user_id, str)
+        self.assertIsInstance(rm3.text, str)
