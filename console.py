@@ -70,7 +70,7 @@ class HBNBCommand(cmd.Cmd):
             if show_key in all_obj:
                 print(all_obj[show_key])
             else:
-                print("** no  instance found **")
+                print("** no instance found **")
         elif args[0]:
             print("** class doesn't exist **")
         else:
